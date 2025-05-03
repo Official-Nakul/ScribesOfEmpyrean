@@ -8,7 +8,7 @@ const ChatMessage = ({ message, isUser }) => {
   return (
     <div
       className={cn(
-        "flex w-full mb-4",
+        "flex w-full mb-2",
         isUser ? "justify-end" : "justify-start"
       )}
     >
@@ -122,14 +122,14 @@ export default function ChatPage() {
   return (
     <AuroraBackground
       children={
-        <div className="flex flex-col h-screen max-w-4xl mx-auto px-4 py-8 z-10">
-          <div className="flex items-center mb-6">
+        <div className="flex flex-col h-screen w-full max-w-6xl mx-auto px-2 py-2 z-10">
+          <div className="flex items-center mb-2">
             <h1 className="text-3xl font-bold text-white">Empyrean Chat</h1>
           </div>
 
           {/* Messages container */}
-          <div className="flex-1 overflow-y-auto mb-4 pr-2 custom-scrollbar">
-            <div className="space-y-4 py-4">
+          <div className="flex-1 overflow-y-auto mb-2 pr-2 custom-scrollbar">
+            <div className="space-y-2 py-2">
               {messages.map((message) => (
                 <ChatMessage
                   key={message.id}
@@ -141,13 +141,13 @@ export default function ChatPage() {
           </div>
 
           {/* Input area */}
-          <div className="relative bg-gray-800/50 rounded-lg border border-gray-700">
+          <div className="relative bg-gray-800/50 rounded-lg border border-gray-700 mb-1">
             <textarea
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask about books, authors, or literary worlds..."
-              className="w-full bg-transparent text-white p-4 pr-12 outline-none resize-none h-[60px] rounded-lg"
+              className="w-full bg-transparent text-white p-3 pr-12 outline-none resize-none h-[50px] rounded-lg"
               rows="1"
               disabled={isLoading}
             />
@@ -168,7 +168,7 @@ export default function ChatPage() {
           {error && <div className="mt-2 text-red-400 text-sm">{error}</div>}
         </div>
       }
-      className="flex-1 overflow-hidden"
+      className="h-screen w-screen overflow-hidden"
     />
   );
 }
