@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
 from langchain_groq import ChatGroq
@@ -17,7 +18,13 @@ load_dotenv()
 
 # Initialize FastAPI app
 app = FastAPI(title="Empyrean Series QA API")
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 # Initialize embeddings and LLM model
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 model = ChatGroq(model='llama-3.3-70b-versatile', temperature=0.5)
